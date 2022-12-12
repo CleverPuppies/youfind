@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/spec_helper'
-require_relative 'helpers/vcr_helper'
+require_relative '../../../helpers/spec_helper'
+require_relative '../../../helpers/vcr_helper'
 
 describe 'Tests environment' do
   it 'must be in testing environment' do

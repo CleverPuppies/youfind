@@ -7,6 +7,10 @@ ruby File.read('.ruby-version').strip
 gem 'figaro', '~> 1.2'
 gem 'rake'
 
+# PRESENTATION LAYER
+gem 'multi_json'
+gem 'roar'
+
 # Web Application
 gem 'puma', '~> 5'
 gem 'rack-session', '~>0.3'
@@ -14,18 +18,24 @@ gem 'roda', '~> 3'
 gem 'slim', '~> 4'
 
 # Database
-gem 'hirb', '~> 0.7'
-gem 'hirb-unicode', '~> 0.0.5'
-gem 'sequel', '5.62.0'
+#gem 'hirb', '~> 0.7'
+#gem 'hirb-unicode', '~> 0.0.5'
+#gem 'sequel', '5.62.0'
 
-group :development, :test do
-  gem 'sqlite3', '~> 1.5.3'
-end
+#group :development, :test do
+  #gem 'sqlite3', '~> 1.5.3'
+#end
 
-group :production do
-  gem 'pg'
-end
+#group :production do
+#  gem 'pg'
+#end
 
+# Contollers and services
+gem 'dry-monads', '~> 1.4'
+gem 'dry-transaction', '~> 0.13'
+gem 'dry-validation', '~> 1.7'
+
+# DOMAIN LAYER
 # Validation
 gem 'dry-struct', '~> 1'
 gem 'dry-types', '~> 1'

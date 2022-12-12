@@ -1366,4 +1366,229 @@ http_interactions:
       encoding: UTF-8
       string: '{"message":"You are not subscribed to this API."}'
   recorded_at: Sun, 20 Nov 2022 06:07:04 GMT
+- request:
+    method: get
+    uri: https://ytube-videos.p.rapidapi.com/info?id=H2tuKiiznsY
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      X-Rapidapi-Key:
+      - "<RAPIDAPI_KEY>"
+      X-Rapidapi-Host:
+      - ytube-videos.p.rapidapi.com
+      Connection:
+      - close
+      Host:
+      - ytube-videos.p.rapidapi.com
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 27 Nov 2022 08:46:40 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '929'
+      Connection:
+      - close
+      Cache-Control:
+      - public, max-age=0, must-revalidate
+      Etag:
+      - '"3a1-YpDmW4KdHyUBgw2HBZsYxnZOgJ4"'
+      X-Vercel-Id:
+      - hnd1::iad1::26f2t-1669538798782-4769783d92a8
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Vercel-Cache:
+      - MISS
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+      X-Matched-Path:
+      - "/api/yt/info"
+      Age:
+      - '0'
+      X-Ratelimit-Core-Limit:
+      - '500'
+      X-Ratelimit-Core-Remaining:
+      - '491'
+      X-Ratelimit-Core-Reset:
+      - '64835'
+      X-Ratelimit-Download-Data-Limit:
+      - '10'
+      X-Ratelimit-Download-Data-Remaining:
+      - '10'
+      X-Ratelimit-Download-Data-Reset:
+      - '64835'
+      Server:
+      - RapidAPI-1.2.8
+      X-Rapidapi-Version:
+      - 1.2.8
+      X-Rapidapi-Region:
+      - AWS - ap-northeast-1
+    body:
+      encoding: UTF-8
+      string: '[{"id":{"videoId":"H2tuKiiznsY"},"url":"https://www.youtube.com/watch?v=H2tuKiiznsY","title":"The
+        real reason Boeing''s new plane crashed twice","description":"","duration_raw":"6:00","snippet":{"url":"https://www.youtube.com/watch?v=H2tuKiiznsY","duration":"6:00","publishedAt":"3
+        years ago","thumbnails":{"id":"H2tuKiiznsY","url":"https://i.ytimg.com/vi/H2tuKiiznsY/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCOqBuHPa9vSkqeHyG8WXks9vAYVw","default":{"url":"https://i.ytimg.com/vi/H2tuKiiznsY/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCOqBuHPa9vSkqeHyG8WXks9vAYVw","width":720,"height":404},"high":{"url":"https://i.ytimg.com/vi/H2tuKiiznsY/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCOqBuHPa9vSkqeHyG8WXks9vAYVw","width":720,"height":404},"height":404,"width":720},"title":"The
+        real reason Boeing''s new plane crashed twice","views":"13269906"},"views":"13269906"}]'
+  recorded_at: Sun, 27 Nov 2022 08:46:40 GMT
+- request:
+    method: get
+    uri: https://ytube-videos.p.rapidapi.com/captions?id=H2tuKiiznsY
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      X-Rapidapi-Key:
+      - "<RAPIDAPI_KEY>"
+      X-Rapidapi-Host:
+      - ytube-videos.p.rapidapi.com
+      Connection:
+      - close
+      Host:
+      - ytube-videos.p.rapidapi.com
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 27 Nov 2022 08:46:42 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '8162'
+      Connection:
+      - close
+      Cache-Control:
+      - public, max-age=0, must-revalidate
+      Etag:
+      - '"1fe2-PviGsKGwxYYX1r5k450SgoWeRmQ"'
+      X-Vercel-Id:
+      - hnd1::iad1::dsrrt-1669538801060-73ee7485848c
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Vercel-Cache:
+      - MISS
+      Strict-Transport-Security:
+      - max-age=63072000
+      X-Matched-Path:
+      - "/api/yt/captions"
+      Age:
+      - '0'
+      X-Ratelimit-Core-Limit:
+      - '500'
+      X-Ratelimit-Core-Remaining:
+      - '490'
+      X-Ratelimit-Core-Reset:
+      - '64833'
+      X-Ratelimit-Download-Data-Limit:
+      - '10'
+      X-Ratelimit-Download-Data-Remaining:
+      - '10'
+      X-Ratelimit-Download-Data-Reset:
+      - '64833'
+      Server:
+      - RapidAPI-1.2.8
+      X-Rapidapi-Version:
+      - 1.2.8
+      X-Rapidapi-Region:
+      - AWS - ap-northeast-1
+    body:
+      encoding: UTF-8
+      string: '[{"start":"1.5","dur":"1.72","text":"This is an airplane engine."},{"start":"5.1","dur":"4.15","text":"It''s
+        sitting in a field in Bishoftu, Ethiopia—\npart of the wreckage of Ethiopian
+        Airlines"},{"start":"9.25","dur":"4.07","text":"Flight 302, which crashed
+        on March 10, 2019."},{"start":"13.32","dur":"1.8","text":"157 people died."},{"start":"16.14","dur":"6.6","text":"This
+        was just a few months after another flight,\nLion Air 610, crashed in Indonesia
+        and killed 189 people."},{"start":"24.02","dur":"6.14","text":"These two flights
+        were operating the same\nplane: The Boeing 737 MAX 8."},{"start":"30.16","dur":"3.06","text":"And
+        its engine is the key to understanding\nwhy this particular plane"},{"start":"33.22","dur":"1.8","text":"has
+        caused so many problems."},{"start":"36.7","dur":"1.76","text":"But there''s
+        nothing actually wrong with this\nengine."},{"start":"39.02","dur":"3.52","text":"In
+        fact, airplane manufacturers raced to put\nthem on their new planes."},{"start":"43.2","dur":"1.76","text":"That''s
+        where the problem started."},{"start":"51.62","dur":"3.16","text":"The two
+        biggest airplane manufacturers in\nthe world are Airbus and Boeing."},{"start":"54.78","dur":"2.18","text":"And
+        they have a fierce rivalry."},{"start":"56.96","dur":"4.43","text":"If one
+        of them can offer a better plane, the\nother could lose a lot of money."},{"start":"61.39","dur":"2.849","text":"That''s
+        exactly what was about to happen in\n2010."},{"start":"64.239","dur":"5.261","text":"Airbus
+        announced that they would update their\nmost popular model,  the A320, a single-aisle"},{"start":"69.5","dur":"2.34","text":"airplane
+        that services many domestic flights."},{"start":"71.84","dur":"1.6","text":"You''ve
+        probably been on one."},{"start":"75.14","dur":"2.36","text":"For this new
+        plane, Airbus had a big update."},{"start":"77.5","dur":"2.12","text":"It
+        would have a new kind of engine."},{"start":"80.24","dur":"2.16","text":"It
+        was much larger than the previous engine,"},{"start":"82.4","dur":"3.04","text":"but
+        it would make the plane 15 percent\nmore fuel efficient."},{"start":"85.45","dur":"3.95","text":"And
+        just as importantly, this upgrade wouldn''t\nchange the plane that much."},{"start":"89.4","dur":"4.38","text":"A
+        pilot could walk into the new model, with\nlittle additional training, and
+        be on their way."},{"start":"95.28","dur":"4.38","text":"It was called the
+        A320 NEO, and it would save\nairlines a lot of money."},{"start":"100.81","dur":"2.93","text":"This
+        was a problem for Boeing."},{"start":"103.74","dur":"4.26","text":"To compete
+        with Airbus, Boeing''s obvious move\nwas to upgrade the engine on their single-aisle"},{"start":"108","dur":"1.79","text":"plane,
+        the 737."},{"start":"109.79","dur":"1.969","text":"But there was one issue."},{"start":"111.76","dur":"3.84","text":"Here''s
+        a sketch of the 737 next to the Airbus\nA320."},{"start":"116.58","dur":"4.079","text":"Notice
+        how the 737 is lower to the ground\nthan the A320."},{"start":"120.66","dur":"3.96","text":"This
+        meant Airbus could slide a new engine\nunder the wing of their A320."},{"start":"125.3","dur":"2.96","text":"But
+        there wasn''t enough room under the wing\nof the Boeing 737."},{"start":"129.22","dur":"4.04","text":"But
+        a few months later, Boeing''s product development\nhead had big news."},{"start":"134.12","dur":"4.3","text":"He
+        said: \"We figured out a way to get a big\nenough engine under the wing.\""},{"start":"140.58","dur":"4.68","text":"Their
+        solution was to move up the engine on\nthe wing, so that it would be slightly
+        higher"},{"start":"145.26","dur":"2","text":"and it would fit on their 737s."},{"start":"148.52","dur":"3.12","text":"Here''s
+        a promotional video of that updated\n737 in the air."},{"start":"151.66","dur":"4","text":"You
+        can actually see that the top of the engine\nis above the wing."},{"start":"155.66","dur":"3.56","text":"Boeing
+        called this model the 737 MAX."},{"start":"159.58","dur":"4.56","text":"And
+        just like Airbus with the A320, Boeing\nsaid their new plane was so similar
+        to its"},{"start":"164.14","dur":"3.719","text":"predecessor that pilots would
+        only need minimal\nadditional training."},{"start":"169","dur":"4.16","text":"The
+        737 MAX became the hottest selling plane\non the market."},{"start":"174.12","dur":"2.18","text":"And
+        it helped Boeing keep up with AirBus."},{"start":"177.4","dur":"4.259","text":"Except,
+        moving the engine up on the 737\nhad a side effect."},{"start":"182.36","dur":"5.14","text":"When
+        the 737 MAX was in full thrust, like\nduring takeoff, the nose tended to point
+        too"},{"start":"187.51","dur":"2.88","text":"far upward, which could lead
+        to a stall."},{"start":"190.39","dur":"4.919","text":"This was a problem,
+        because these planes were\nsupposed to behave exactly like the old ones."},{"start":"195.309","dur":"1.951","text":"So
+        Boeing came up with a workaround."},{"start":"197.84","dur":"4.759","text":"Instead
+        of re-engineering the plane, they\ninstalled software that automatically pushed"},{"start":"202.6","dur":"3.58","text":"the
+        nose downward if the pilot flew the plane\nat too high of an angle."},{"start":"206.9","dur":"5.97","text":"They
+        called it the Maneuvering Characteristics\nAugmentation System, or MCAS."},{"start":"213.66","dur":"5.46","text":"But
+        because Boeing was selling the 737 MAX\nas pretty much the same plane as the
+        737,"},{"start":"219.12","dur":"2.56","text":"they didn''t highlight the new
+        MCAS system."},{"start":"222.3","dur":"4.76","text":"Many pilots only got
+        a two-hour iPad course\nbefore entering the cockpit for the first time."},{"start":"227.42","dur":"3.72","text":"And
+        the \"training material did not mention\"\nthe MCAS software."},{"start":"232.4","dur":"5.26","text":"In
+        2018, several American pilots complained\nto the federal government that the
+        737 MAX"},{"start":"237.66","dur":"2.02","text":"was \"suddenly nosing down.\""},{"start":"241.28","dur":"5.84","text":"On
+        October 29, 2018, Lion Air Flight 610 took\noff from Jakarta."},{"start":"248.22","dur":"3.8","text":"In
+        the flight report, which shows the plane''s\naltitude over time, you can see
+        that the plane"},{"start":"252.02","dur":"1.99","text":"was in full thrust
+        during takeoff."},{"start":"255.2","dur":"3.62","text":"But at a certain point,
+        the nose of the plane\nkept lurching downward."},{"start":"260.52","dur":"2.64","text":"The
+        pilots couldn''t figure out why this was\nhappening."},{"start":"263.169","dur":"3.601","text":"The
+        captain \"asked the first officer to check\nthe quick reference handbook.\""},{"start":"266.77","dur":"1.75","text":"They
+        couldn''t find the solution."},{"start":"268.52","dur":"2.53","text":"The
+        pilots continued to fight with the MCAS."},{"start":"271.05","dur":"1.83","text":"The
+        plane struggled to gain altitude."},{"start":"274.8","dur":"4.06","text":"Reports
+        show it was likely because the computer\nwas getting incorrect sensor data,
+        pushing"},{"start":"278.86","dur":"2.05","text":"the plane toward the earth
+        below."},{"start":"281.28","dur":"5.08","text":"12 minutes after takeoff,
+        the plane crashed\ninto the Java Sea."},{"start":"291.59","dur":"4.34","text":"In
+        the Ethiopia crash, the report shows that\nthe pilots were actually able to
+        disable the"},{"start":"295.93","dur":"4.859","text":"MCAS, but it was too
+        late to overcome the\nmalfunctioning MCAS sensors."},{"start":"300.789","dur":"5.331","text":"For
+        now, nearly every 737 MAX 8 in service\nhas been grounded."},{"start":"306.12","dur":"3.65","text":"And
+        the Federal Aviation Administration is\nfacing scrutiny over how they rushed
+        this"},{"start":"309.77","dur":"1.41","text":"plane through certification."},{"start":"312.26","dur":"4.3","text":"Boeing''s
+        response has been to apply a software\nupdate and make the MCAS \"less aggressive,\""},{"start":"316.569","dur":"3.231","text":"while
+        also saying they''ll increase pilot training\non how to turn it off."},{"start":"322.8","dur":"3.56","text":"This
+        problem started with a company''s race\nto compete with its rival."},{"start":"328.04","dur":"3.74","text":"It
+        pushed them to pretend like their new plane\nbehaved exactly like their old
+        one."},{"start":"334.02","dur":"1.72","text":"Even when it didn''t."}]'
+  recorded_at: Sun, 27 Nov 2022 08:46:42 GMT
 recorded_with: VCR 6.1.0
