@@ -15,7 +15,7 @@ module VcrHelper
     end
   end
 
-  def self.configure_vcr_for_youtube
+  def self.configure_vcr_for_youtube(recording: :new_episodes)
     VCR.configure do |c|
       c.filter_sensitive_data('<RAPIDAPI_KEY>') { YT_API_KEY }
       c.filter_sensitive_data('<RAPIDAPI_KEY_ESC>') { CGI.escape(YT_API_KEY) }
@@ -23,8 +23,9 @@ module VcrHelper
 
     VCR.insert_cassette(
       CASSETTE_FILE,
-      record: :new_episodes,
-      match_requests_on: %i[method uri headers]
+      record: recording,
+      match_requests_on: %i[method uri headers],
+      allow_playback_repeats: true
     )
   end
 

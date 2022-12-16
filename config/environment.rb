@@ -4,7 +4,7 @@ require 'rack/session'
 require 'logger'
 require 'roda'
 require 'figaro'
-require 'sequel'
+# require 'sequel'
 require 'yaml'
 
 module YouFind
@@ -29,8 +29,8 @@ module YouFind
       end
 
       # Database Setup
-      DB = Sequel.connect(ENV.fetch('DATABASE_URL', nil))
-      def self.DB = DB # rubocop:disable Naming/MethodName
+      # DB = Sequel.connect(ENV.fetch('DATABASE_URL', nil))
+      # def self.DB = DB
 
       # Logger Setup
       LOGGER = Logger.new($stderr)

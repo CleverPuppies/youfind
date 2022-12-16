@@ -3,9 +3,8 @@
 module Views
   # View for a single video entity
   class Video
-    def initialize(video, text)
+    def initialize(video)
       @video = video
-      @text = text
     end
 
     def origin_id
@@ -37,9 +36,7 @@ module Views
     end
 
     def captions
-      return @video.captions if @text.empty?
-
-      @video.find_caption(@text)
+      @video.captions
     end
   end
 end
