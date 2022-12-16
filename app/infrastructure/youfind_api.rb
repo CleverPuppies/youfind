@@ -64,7 +64,8 @@ module YouFind
           url = [api_path, resources].flatten.join('/') + params_str(params)
           HTTP.headers('Accept' => 'application/json').send(method, url)
               .then { |http_response| Response.new(http_response) }
-        rescue StandardError
+        rescue StandardError => e
+          puts e
           raise "Invalid URL request: #{url}"
         end
       end

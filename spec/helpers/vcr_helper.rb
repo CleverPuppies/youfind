@@ -17,6 +17,7 @@ module VcrHelper
 
   def self.configure_vcr_for_youtube(recording: :new_episodes)
     VCR.configure do |c|
+      c.allow_http_connections_when_no_cassette = true
       c.filter_sensitive_data('<RAPIDAPI_KEY>') { YT_API_KEY }
       c.filter_sensitive_data('<RAPIDAPI_KEY_ESC>') { CGI.escape(YT_API_KEY) }
     end
