@@ -37,7 +37,7 @@ hr
     .row.mt-5.ms-3
         .row.mb-3
             .col-2.my-auto
-                h2 Captions
+                h2 Subtitles
             .col
                 .row.vertical-align.query-bar.w-50
                     form method='get' action='/video/#{video.origin_id}'
@@ -53,6 +53,8 @@ hr
             - video.captions.each do |caption|
                 .row
                     .col-7
-                        a.row.caption-line href="https://youtu.be/#{video.origin_id}?t=#{caption.start.to_i.to_s}"
-                            pre.mb-0
-                                = "[#{caption.start.to_i.to_s}]#{' '*(video.captions.last.start.to_i.to_s.length - caption.start.to_i.to_s.length)} #{caption[:text]}"
+                        a.row.caption-line href="https://youtu.be/#{video.origin_id}?t=#{caption[:start].to_i.to_s}"
+                            .col-1
+                                = "[#{caption[:start].to_i.to_s}]"
+                            .col-10
+                                = "#{' '*(video.captions.last[:start].to_i.to_s.length - caption[:start].to_i.to_s.length)} #{caption[:text]}"
