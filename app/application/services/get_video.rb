@@ -13,7 +13,7 @@ module YouFind
 
       private
 
-      def request_video_with_search(video_id)
+      def request_video_without_captions(video_id)
         result = Gateway::Api.new(YouFind::App.config).retrieve_video(video_id)
         result.success? ? Success(result.payload) : Failure(result.message)
       rescue StandardError => e
@@ -24,8 +24,8 @@ module YouFind
 
       def reify_video(video_json)
         Representer::Video.new(OpenStruct.new)
-          .from_json(video_json)
-          .then { |video| Success(video) }
+                          .from_json(video_json)
+                          .then { |video| Success(video) }
       rescue StandardError
         Failure('Error in the video -- please try again')
       end

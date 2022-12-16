@@ -18,17 +18,17 @@ gem 'roda', '~> 3'
 gem 'slim', '~> 4'
 
 # Database
-#gem 'hirb', '~> 0.7'
-#gem 'hirb-unicode', '~> 0.0.5'
-#gem 'sequel', '5.62.0'
+# gem 'hirb', '~> 0.7'
+# gem 'hirb-unicode', '~> 0.0.5'
+# gem 'sequel', '5.62.0'
 
-#group :development, :test do
-  #gem 'sqlite3', '~> 1.5.3'
-#end
+# group :development, :test do
+# gem 'sqlite3', '~> 1.5.3'
+# end
 
-#group :production do
+# group :production do
 #  gem 'pg'
-#end
+# end
 
 # Contollers and services
 gem 'dry-monads', '~> 1.4'

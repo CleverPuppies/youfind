@@ -33,12 +33,11 @@ module YouFind
       end
 
       def reify_video(video_json)
-        puts video_json.class.name
-        video = Representer::Video.new(OpenStruct.new)
-          .from_json(video_json)
-          .then { |video| Success(video) }
-      rescue StandardError => errors
-        puts errors
+        Representer::Video.new(OpenStruct.new)
+                          .from_json(video_json)
+                          .then { |video| Success(video) }
+      rescue StandardError => e
+        puts e
         Failure('Error in the video -- please try again')
       end
     end
