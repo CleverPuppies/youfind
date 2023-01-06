@@ -14,17 +14,31 @@ module YouFind
     plugin :flash
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
     plugin :assets, path: 'app/presentation/assets',
-                    css: 'style.css'
+                    css: ['style.css'],
+                    js: ['autocomplete.js', 'search_autocomplete.js']
+    plugin :public, root: 'app/presentation/public'
     plugin :common_logger, $stderr
     plugin :halt
     plugin :caching
 
     route do |routing|
       routing.assets # load CSS
+      routing.public # make public files available
+      #routing.public_file "images/youfind_logo_600x461.png"
+
+      response['Content-Type'] = 'text/html; charset=utf-8'
+      
+      session[:history] ||= []
 
       # GET /
       routing.root do
-        view 'home'
+        url_history = session[:history].map do |url|
+          {
+            "label" => url,
+            "value" => url
+          }
+        end
+        view 'home', locals: { url_history: url_history }
       end
 
       routing.on 'video' do
@@ -38,6 +52,8 @@ module YouFind
               flash[:error] = video_saved.failure
               routing.redirect '/'
             end
+
+            session[:history].insert(0, video_url[:yt_video_url]).uniq!
 
             video = video_saved.value!
             routing.redirect "video/#{video.origin_id}"

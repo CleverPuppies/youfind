@@ -1,8 +1,9 @@
-div.container.mt-5
+div.video-background
+div.container.mt-5.front-component
   .row
-    .col-lg-4.col-md-2.col-sm-2
-        h1 class='text-center mb-5'
-            a.text-decoration-none.title href="/" YouFind
+    .col-lg-4.col-md-2.col-sm-2.text-center
+      a href="/"
+        img src='../youfind_logo_992 × 164.png' width='300px'
     .col-lg-6.col-md-4.col-sm-4
       #search-bar
         form role="form" action="/video" method='POST' id='show-video-form'
@@ -15,7 +16,7 @@ div.container.mt-5
                         placeholder='e.g. https://www.youtube.com/watch?v=jNQXAC9IVRw'
                     }
 hr
-.container
+.container.front-component.text-white
     .row
         .col-3
             iframe.rounded{

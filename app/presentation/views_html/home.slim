@@ -1,14 +1,19 @@
+javascript:
+    const history_str = "#{url_history}".replaceAll('&quot;', '"').replaceAll('=&gt;', ':')
+    const history = JSON.parse(history_str)
+    console.log(history)
+
 .container class='vertical-center'
     h1 class='text-center mb-5'
-        a href="/" class='text-decoration-none title' YouFind
+        a href="/"
+            img src='youfind_logo_600x461.png' width='300px'
     #search-bar.w-50.mx-auto
         form role="form" action="/video" method='POST' id='show-video-form'
             .row.vertical-align.query-bar
-                .form
+                .form.dropdown
                     i class='fa-solid fa-lg fa-search mx-3 my-2'
-                    input.form-control.form-input.px-4.py-3{
-                        type='text' name='yt_video_url'
-                        class='form-control form-lg-input px-4 py-3'
+                    input.form-control.form-lg-input.rounded-edge.dropdown-toggle.px-4.py-3{
+                        type='text' name='yt_video_url' id='ytUrlInput'
+                        data-toggle="dropdown" autocomplete="off"
                         placeholder='e.g. https://www.youtube.com/watch?v=jNQXAC9IVRw'
                     }
-                
