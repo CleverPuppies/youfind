@@ -77,6 +77,14 @@ module YouFind
               routing.redirect '/'
             end
 
+            highlights = []
+            highlights_result = Service::GetHighlightedTimestamps.new.call({video_id: video_id}).value!
+            if highlights_result.response.processing?
+              flash[:notice] = 'Comments are being gathered for richer information'
+            else
+              highlights = highlights_result.payload
+            end
+
             video_data = video_result.value!
             video_data['captions'] = openstruct_to_h(captions_result.value!)[:captions]
 
@@ -87,7 +95,7 @@ module YouFind
             App.configure :production do
               response.expires 60, public: true
             end
-            view 'video', locals: { video: video }
+            view 'video', locals: { video: video, highlights: highlights }
           end
         end
       end

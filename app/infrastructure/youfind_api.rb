@@ -24,6 +24,10 @@ module YouFind
         @request.retrieve_captions(video_id, search_input)
       end
 
+      def retrieve_highlighted_timestamps(video_id)
+        @request.retrieve_highlighted_timestamps(video_id)
+      end
+
       def add_video(video_id)
         @request.add_video(video_id)
       end
@@ -46,6 +50,10 @@ module YouFind
         def retrieve_captions(video_id, search_input = '')
           params = search_input.empty? ? {} : { text: search_input }
           call_api('get', ['video', video_id, 'captions'], params)
+        end
+
+        def retrieve_highlighted_timestamps(video_id)
+          call_api('get', ['video', video_id, 'highlights'])
         end
 
         def add_video(video_id)
