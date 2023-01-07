@@ -84,3 +84,9 @@ body{
 .fitting-width{
     width:fit-content;
 }
+
+#flash-bar{
+    position: fixed;
+    bottom: 0;
+    left: 1em;
+}

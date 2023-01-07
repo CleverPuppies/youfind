@@ -14,7 +14,7 @@ module YouFind
       private
 
       def request_timestamps(input)
-        input[:response] = Gateway::Api.new(YouFind::App.config).retrieve_video(input[:video_id])
+        input[:response] = Gateway::Api.new(YouFind::App.config).retrieve_highlighted_timestamps(input[:video_id])
         input[:response].success? ? Success(input[:response]) : Failure(input[:response].message)
       rescue StandardError => e
         puts e.inspect

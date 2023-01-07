@@ -79,7 +79,7 @@ module YouFind
 
             highlights = []
             highlights_result = Service::GetHighlightedTimestamps.new.call({video_id: video_id}).value!
-            if highlights_result.response.processing?
+            if highlights_result.processing?
               flash[:notice] = 'Comments are being gathered for richer information'
             else
               highlights = highlights_result.payload

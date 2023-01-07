@@ -1,6 +1,15 @@
 - if flash[:error]
-  div class="alert alert-danger" id="flash_bar_danger"
+  div class="alert alert-danger" id="flash-bar"
     = flash[:error]
 - if flash[:notice]
-  div class="alert alert-success" id="flash_bar_success"
+  div class="alert alert-primary" id="flash-bar"
     = flash[:notice]
+  
+  javascript:
+    const alert = document.getElementById('flash-bar');
+    setTimeout(() => {
+      alert.hidden = true;
+    }, 3000);
+
+
+
