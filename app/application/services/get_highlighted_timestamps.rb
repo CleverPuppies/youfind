@@ -9,7 +9,7 @@ module YouFind
       include Dry::Transaction
 
       step :request_timestamps
-      #step :reify_timestamps
+      # step :reify_timestamps
 
       private
 
@@ -25,8 +25,8 @@ module YouFind
       def reify_timestamps(input)
         unless input[:response].processing?
           Representer::ProjectFolderContributions.new(OpenStruct.new)
-            .from_json(input[:response].payload)
-            .then { input[:appraised] = _1 }
+                                                 .from_json(input[:response].payload)
+                                                 .then { input[:appraised] = _1 }
         end
 
         Success(input)

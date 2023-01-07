@@ -24,18 +24,18 @@ module YouFind
     route do |routing|
       routing.assets # load CSS
       routing.public # make public files available
-      #routing.public_file "images/youfind_logo_600x461.png"
+      # routing.public_file "images/youfind_logo_600x461.png"
 
       response['Content-Type'] = 'text/html; charset=utf-8'
-      
+
       session[:history] ||= []
 
       # GET /
       routing.root do
         url_history = session[:history].map do |url|
           {
-            "label" => url,
-            "value" => url
+            'label' => url,
+            'value' => url
           }
         end
         view 'home', locals: { url_history: url_history }
@@ -78,7 +78,7 @@ module YouFind
             end
 
             highlights = []
-            highlights_result = Service::GetHighlightedTimestamps.new.call({video_id: video_id}).value!
+            highlights_result = Service::GetHighlightedTimestamps.new.call({ video_id: video_id }).value!
             if highlights_result.response.processing?
               flash[:notice] = 'Comments are being gathered for richer information'
             else
