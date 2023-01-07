@@ -24,18 +24,18 @@ module YouFind
     route do |routing|
       routing.assets # load CSS
       routing.public # make public files available
-      #routing.public_file "images/youfind_logo_600x461.png"
+      # routing.public_file "images/youfind_logo_600x461.png"
 
       response['Content-Type'] = 'text/html; charset=utf-8'
-      
+
       session[:history] ||= []
 
       # GET /
       routing.root do
         url_history = session[:history].map do |url|
           {
-            "label" => url,
-            "value" => url
+            'label' => url,
+            'value' => url
           }
         end
         view 'home', locals: { url_history: url_history }
