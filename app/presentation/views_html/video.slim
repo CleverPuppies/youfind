@@ -1,60 +1,96 @@
-div.container.mt-5.front-component
-  .row
-    .col-lg-4.col-md-2.col-sm-2.text-center
-      a href="/"
-        img src='../youfind_logo_992 × 164.png' width='300px'
-    .col-lg-6.col-md-4.col-sm-4
-      #search-bar
-        form role="form" action="/video" method='POST' id='show-video-form'
-            .row.vertical-align.query-bar
-                .form
-                    i.fa-solid.fa-lg.fa-search.mx-3.my-2
-                    input{
-                        type='text' name='yt_video_url'
-                        class='form-control form-lg-input px-4 py-3'
-                        placeholder='e.g. https://www.youtube.com/watch?v=jNQXAC9IVRw'
+.container.mt-5.front-component
+    - if processing.in_progress?
+        .progress
+        .progress-bar.bg-success.progress-bar-striped.active[
+            role="progressbar" aria-valuenow="10" aria-valuemin="0"
+            aria-valuemax="100" style="width:0%"]
+        script src = "#{processing.ws_javascript}"
+        javascript:
+            var channel = "#{processing.ws_channel_id}";
+            var client = new Faye.Client("#{processing.ws_route}");
+            var bar = document.getElementsByClassName("progress-bar")[0];
+            var reg = /\:(\d+)%/
+            client.subscribe('/' + channel, function(message) {
+                // Collect progressbar element and percentage
+                var progress = bar.getAttribute("style")
+                var currentProgress = reg.exec(progress)[1]
+      
+                if (isNaN(message)) {
+                    bar.setAttribute("style", "width:100%")
+                    bar.setAttribute("class", "progress-bar bg-danger progress-bar-striped")
+                    bar.innerHTML = message
+                } else {
+                    if (parseInt(message) > parseInt(currentProgress)) {
+                        // Set the progress bar and percentage
+                        bar.setAttribute("aria-valuenow", message)
+                        bar.setAttribute("style", "width:"+message+"%")
+                        bar.innerHTML = message+"%"
+                        // Reload page at 100%
+                        if (message == "100") {
+                            setTimeout(function () {
+                            window.location = window.location.href
+                            }, 1000);
+                        }
                     }
-hr
-.container.front-component.text-white
-    .row
-        .col-3
-            iframe.rounded{
-                height='300px'
-                src=video.embedded_url
-                frameborder='0'
-                scrolling='no'
-            }
-        .col-4.mt-4
-            h2
-                = video.title
-            div
-                i.fa-solid.fa-eye.me-2
-                = video.views+" views"
-            div
-                i.fa-solid.fa-clock.me-2
-                = video.time
-        
-    .row.mt-5.ms-3
-        .row.mb-3
-            .col-2.my-auto
-                h2 Subtitles
-            .col
-                .row.vertical-align.query-bar.w-50
-                    form method='get' action='/video/#{video.origin_id}'
+                }
+            });
+    - else
+        .row
+            .col-lg-4.col-md-2.col-sm-2.text-center
+            a href="/"
+                img src='../youfind_logo_992 × 164.png' width='300px'
+            .col-lg-6.col-md-4.col-sm-4
+            #search-bar
+                form role="form" action="/video" method='POST' id='show-video-form'
+                    .row.vertical-align.query-bar
                         .form
-                            i.fa-solid.fa-search.sm-search.mx-3.mb-3
-                            input.h-auto{
-                                type='text' name='text'
-                                class='form-control form-sm-input px-4'
-                                placeholder='Search words'
+                            i.fa-solid.fa-lg.fa-search.mx-3.my-2
+                            input{
+                                type='text' name='yt_video_url'
+                                class='form-control form-lg-input px-4 py-3'
+                                placeholder='e.g. https://www.youtube.com/watch?v=jNQXAC9IVRw'
                             }
-        .row.ms-2
-            .col-lg-1.col-md-2.col-sm-2
-            - video.captions.each do |caption|
-                .row
-                    .col-7
-                        a.row.caption-line href="https://youtu.be/#{video.origin_id}?t=#{caption[:start].to_i.to_s}"
-                            .col-1
-                                = "[#{caption[:start].to_i.to_s}]"
-                            .col-10
-                                = "#{' '*(video.captions.last[:start].to_i.to_s.length - caption[:start].to_i.to_s.length)} #{caption[:text]}"
+        hr
+        .container.front-component.text-white
+            .row
+                .col-3
+                    iframe.rounded{
+                        height='300px'
+                        src=video.embedded_url
+                        frameborder='0'
+                        scrolling='no'
+                    }
+                .col-4.mt-4
+                    h2
+                        = video.title
+                    div
+                        i.fa-solid.fa-eye.me-2
+                        = video.views+" views"
+                    div
+                        i.fa-solid.fa-clock.me-2
+                        = video.time
+                
+            .row.mt-5.ms-3
+                .row.mb-3
+                    .col-2.my-auto
+                        h2 Subtitles
+                    .col
+                        .row.vertical-align.query-bar.w-50
+                            form method='get' action='/video/#{video.origin_id}'
+                                .form
+                                    i.fa-solid.fa-search.sm-search.mx-3.mb-3
+                                    input.h-auto{
+                                        type='text' name='text'
+                                        class='form-control form-sm-input px-4'
+                                        placeholder='Search words'
+                                    }
+                .row.ms-2
+                    .col-lg-1.col-md-2.col-sm-2
+                    - video.captions.each do |caption|
+                        .row
+                            .col-7
+                                a.row.caption-line href="https://youtu.be/#{video.origin_id}?t=#{caption[:start].to_i.to_s}"
+                                    .col-1
+                                        = "[#{caption[:start].to_i.to_s}]"
+                                    .col-10
+                                        = "#{' '*(video.captions.last[:start].to_i.to_s.length - caption[:start].to_i.to_s.length)} #{caption[:text]}"

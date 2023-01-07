@@ -14,7 +14,7 @@ end
 
 desc 'run puma server on watch mode'
 task :rerun do
-  sh "rerun -c --ignore 'coverage/*' -- bundle exec puma"
+  sh "rerun -c --ignore 'coverage/*' -- bundle exec puma -p 9200"
 end
 
 desc 'Generates a 64 byte secret for Rack::Session'

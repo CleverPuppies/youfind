@@ -9,13 +9,14 @@ module YouFind
       include Dry::Transaction
 
       step :request_timestamps
-      # step :reify_timestamps
+      step :reify_timestamps
 
       private
 
       def request_timestamps(input)
-        input[:response] = Gateway::Api.new(YouFind::App.config).retrieve_highlighted_timestamps(input[:video_id])
-        input[:response].success? ? Success(input[:response]) : Failure(input[:response].message)
+        input[:response] = Gateway::Api.new(YouFind::App.config)
+                                       .retrieve_highlighted_timestamps(input[:video_id])
+        input[:response].success? ? Success(input) : Failure(input[:response].message)
       rescue StandardError => e
         puts e.inspect
         puts e.backtrace
@@ -30,8 +31,8 @@ module YouFind
         end
 
         Success(input)
-      rescue StandardError
-        Failure('Error in our appraisal report -- please try again')
+        # rescue StandardError
+        #   Failure('Error while collecting timestamps -- please try again')
       end
     end
   end
