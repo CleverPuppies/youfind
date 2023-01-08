@@ -34,8 +34,8 @@ html class='h-100'
         #html_body.container.h-100
             section
                 include :flash_bar
-                == yield
-              
+                include :modal
+                == yield    
             footer.position-fixed.bottom-0.end-0.mb-3.me-4.text-white.front-component
                 = "YouFind v0.1"
 

@@ -1,6 +1,6 @@
 body{
     background: #c4302b;  /* fallback color */
-    z-index: -1;
+    z-index: -2;
 }
 
 .layered-background{
@@ -10,12 +10,7 @@ body{
     left: 0;
     top: 0;
     background: rgba(255,255,255,0.1);
-    z-index: 0;
-}
-
-.front-component{
-    position: relative;
-    z-index: 1;
+    z-index: -1;
 }
 
 .title{

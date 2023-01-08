@@ -9,7 +9,7 @@ module YouFind
       include Dry::Transaction
 
       step :request_timestamps
-      step :reify_timestamps
+      #step :reify_timestamps
 
       private
 

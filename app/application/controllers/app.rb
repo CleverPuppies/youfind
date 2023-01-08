@@ -91,23 +91,24 @@ module YouFind
               flash.now[:notice] = 'Comments are being gathered for richer information'
             else
               highlights = highlights_value.payload # TODO
-              video_data = video_result.value!
-              video_data['captions'] = openstruct_to_h(captions_result.value!)[:captions]
+            end
 
-              video = Views::Video.new(
-                video_data
-              )
+            video_data = video_result.value!
+            video_data['captions'] = openstruct_to_h(captions_result.value!)[:captions]
 
-              # Only use browser caching in production
-              App.configure :production do
-                response.expires 60, public: true
-              end
+            video = Views::Video.new(
+              video_data
+            )
+            
+            # Only use browser caching in production
+            App.configure :production do
+              response.expires 60, public: true
             end
 
             processing = Views::CommentProcessing.new(
               App.config, highlights_value.response
             )
-            
+
             view 'video', locals: { video: video, highlights: highlights, processing: processing }
           end
         end
