@@ -28,10 +28,6 @@ module YouFind
         ENV['RAPID_API_TOKEN'] = config.API_KEY
       end
 
-      # Database Setup
-      # DB = Sequel.connect(ENV.fetch('DATABASE_URL', nil))
-      # def self.DB = DB
-
       # Logger Setup
       LOGGER = Logger.new($stderr)
       def self.logger = LOGGER
