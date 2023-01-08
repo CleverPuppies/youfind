@@ -14,17 +14,31 @@ module YouFind
     plugin :flash
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
     plugin :assets, path: 'app/presentation/assets',
-                    css: 'style.css'
+                    css: ['style.css'],
+                    js: ['autocomplete.js', 'search_autocomplete.js']
+    plugin :public, root: 'app/presentation/public'
     plugin :common_logger, $stderr
     plugin :halt
     plugin :caching
 
     route do |routing|
       routing.assets # load CSS
+      routing.public # make public files available
+      # routing.public_file "images/youfind_logo_600x461.png"
+
+      response['Content-Type'] = 'text/html; charset=utf-8'
+
+      session[:history] ||= []
 
       # GET /
       routing.root do
-        view 'home'
+        url_history = session[:history].map do |url|
+          {
+            'label' => url,
+            'value' => url
+          }
+        end
+        view 'home', locals: { url_history: url_history }
       end
 
       routing.on 'video' do
@@ -38,6 +52,8 @@ module YouFind
               flash[:error] = video_saved.failure
               routing.redirect '/'
             end
+
+            session[:history].insert(0, video_url[:yt_video_url]).uniq!
 
             video = video_saved.value!
             routing.redirect "video/#{video.origin_id}"
@@ -61,6 +77,22 @@ module YouFind
               routing.redirect '/'
             end
 
+            highlights = []
+            highlights_result = Service::GetHighlightedTimestamps.new.call({ video_id: video_id })
+
+            if highlights_result.failure?
+              flash[:error] = highlights_result.failure
+              routing.redirect '/'
+            end
+
+            highlights_value = OpenStruct.new(highlights_result.value!)
+
+            if highlights_value.response.processing?
+              flash.now[:notice] = 'Comments are being gathered for richer information'
+            else
+              highlights = highlights_value.payload # TODO
+            end
+
             video_data = video_result.value!
             video_data['captions'] = openstruct_to_h(captions_result.value!)[:captions]
 
@@ -68,10 +100,16 @@ module YouFind
               video_data
             )
 
+            # Only use browser caching in production
             App.configure :production do
               response.expires 60, public: true
             end
-            view 'video', locals: { video: video }
+
+            processing = Views::CommentProcessing.new(
+              App.config, highlights_value.response
+            )
+
+            view 'video', locals: { video: video, highlights: highlights, processing: processing }
           end
         end
       end

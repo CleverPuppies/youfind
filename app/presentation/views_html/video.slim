@@ -1,8 +1,15 @@
+javascript:
+    function setEmbededUrl(timestamp) {
+        const url = "#{video.embedded_url}?start=" + timestamp;
+        console.log(url);
+        document.getElementById("modal-video").src = url;
+    }
+
 div.container.mt-5
   .row
-    .col-lg-4.col-md-2.col-sm-2
-        h1 class='text-center mb-5'
-            a.text-decoration-none.title href="/" YouFind
+    .col-lg-4.col-md-2.col-sm-2.text-center
+      a href="/"
+        img src='../youfind_logo_992 × 164.png' width='300px'
     .col-lg-6.col-md-4.col-sm-4
       #search-bar
         form role="form" action="/video" method='POST' id='show-video-form'
@@ -15,7 +22,7 @@ div.container.mt-5
                         placeholder='e.g. https://www.youtube.com/watch?v=jNQXAC9IVRw'
                     }
 hr
-.container
+.container.text-white
     .row
         .col-3
             iframe.rounded{
@@ -33,9 +40,38 @@ hr
             div
                 i.fa-solid.fa-clock.me-2
                 = video.time
-        
+
     .row.mt-5.ms-3
         .row.mb-3
+            - if processing.in_progress?
+                .col-1.my-auto.d-flex.align-items-center
+                    .spinner-grow role="status"
+                        span.visually-hidden
+                    span.ms-2 id="progress"
+                        = "0%"
+                    script src = "#{processing.ws_javascript}"
+                    javascript:
+                        var channel = "#{processing.ws_channel_id}";
+                        var client = new Faye.Client("#{processing.ws_route}");
+                        var progress = document.getElementById("progress");
+                        var reg = /(\d+)%/;
+                        client.subscribe('/' + channel, function(message) {
+                            // Collect progressbar element and percentage
+                            var currentPercentage = reg.exec(progress.innerHTML)[1]
+                            if (isNaN(message)) {
+                                progress.innerHTML = message;
+                            } else {
+                                if (parseInt(message) > parseInt(currentPercentage)) {
+                                    progress.innerHTML = message+"%";
+                                    // Reload page at 100%
+                                    if (message == "100") {
+                                        setTimeout(function () {
+                                        window.location = window.location.href
+                                        }, 1000);
+                                    }
+                                }
+                            }
+                        });
             .col-2.my-auto
                 h2 Subtitles
             .col
@@ -53,7 +89,7 @@ hr
             - video.captions.each do |caption|
                 .row
                     .col-7
-                        a.row.caption-line href="https://youtu.be/#{video.origin_id}?t=#{caption[:start].to_i.to_s}"
+                        a.row.caption-line type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="setEmbededUrl(#{caption[:start].to_i.to_s})"
                             .col-1
                                 = "[#{caption[:start].to_i.to_s}]"
                             .col-10

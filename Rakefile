@@ -14,7 +14,7 @@ end
 
 desc 'run puma server on watch mode'
 task :rerun do
-  sh "rerun -c --ignore 'coverage/*' -- bundle exec puma"
+  sh "rerun -c --ignore 'coverage/*' -- bundle exec puma -p 9200"
 end
 
 desc 'Generates a 64 byte secret for Rack::Session'
@@ -34,12 +34,12 @@ namespace :db do
     def app = YouFind::App
   end
 
-  #desc 'Run migrations'
-  #task migrate: :config do
+  # desc 'Run migrations'
+  # task migrate: :config do
   #  Sequel.extension :migration
   #  puts "Migrating #{app.environment} database to latest"
   #  Sequel::Migrator.run(app.DB, 'db/migrations')
-  #end
+  # end
 
   desc 'Wipe records from all tables'
   task wipe: :config do
