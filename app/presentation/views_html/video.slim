@@ -90,7 +90,9 @@ hr
                 .row
                     .col-7
                         a.row.caption-line type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="setEmbededUrl(#{caption[:start].to_i.to_s})"
-                            .col-1
+                            .col-2 style="width:fit-content"
+                                - if highlights.include? caption[:start].to_i
+                                    .i.fa-solid.fa-star.me-2
                                 = "[#{caption[:start].to_i.to_s}]"
                             .col-10
                                 = "#{' '*(video.captions.last[:start].to_i.to_s.length - caption[:start].to_i.to_s.length)} #{caption[:text]}"

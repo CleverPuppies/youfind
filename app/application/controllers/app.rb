@@ -90,7 +90,7 @@ module YouFind
             if highlights_value.response.processing?
               flash.now[:notice] = 'Comments are being gathered for richer information'
             else
-              highlights = highlights_value.payload # TODO
+              highlights = JSON.parse(highlights_value.response)
             end
 
             video_data = video_result.value!
@@ -108,7 +108,6 @@ module YouFind
             processing = Views::CommentProcessing.new(
               App.config, highlights_value.response
             )
-
             view 'video', locals: { video: video, highlights: highlights, processing: processing }
           end
         end
