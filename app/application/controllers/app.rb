@@ -84,8 +84,8 @@ module YouFind
               flash[:error] = highlights_result.failure
               routing.redirect '/'
             end
-            
-            highlights_value = OpenStruct.new(highlights_result.value!) 
+
+            highlights_value = OpenStruct.new(highlights_result.value!)
 
             if highlights_value.response.processing?
               flash.now[:notice] = 'Comments are being gathered for richer information'
@@ -99,7 +99,7 @@ module YouFind
             video = Views::Video.new(
               video_data
             )
-            
+
             # Only use browser caching in production
             App.configure :production do
               response.expires 60, public: true
