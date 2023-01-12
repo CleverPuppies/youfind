@@ -1,4 +1,7 @@
 javascript:
+    const history_str = "#{url_history}".replaceAll('&quot;', '"').replaceAll('=&gt;', ':')
+    const history = JSON.parse(history_str)
+
     function setEmbededUrl(timestamp) {
         const url = "#{video.embedded_url}?start=" + timestamp;
         console.log(url);
@@ -7,31 +10,31 @@ javascript:
 
 div.container.mt-5
   .row
-    .col-lg-4.col-md-2.col-sm-2.text-center
+    .col-lg-4.col-md-6.col-sm-8.text-center
       a href="/"
         img src='../youfind_logo_992 × 164.png' width='300px'
     .col-lg-6.col-md-4.col-sm-4
       #search-bar
         form role="form" action="/video" method='POST' id='show-video-form'
             .row.vertical-align.query-bar
-                .form
+                .form.dropdown
                     i.fa-solid.fa-lg.fa-search.mx-3.my-2
-                    input{
-                        type='text' name='yt_video_url'
-                        class='form-control form-lg-input px-4 py-3'
+                    input.form-control.form-lg-input.dropdown-toggle.ytUrlInput.px-4.py-3{
+                        type='text' name='yt_video_url' autocomplete="off"
+                        data-toggle="dropdown"
                         placeholder='e.g. https://www.youtube.com/watch?v=jNQXAC9IVRw'
                     }
 hr
 .container.text-white
     .row
-        .col-3
+        .col-3.col-md-6.col-sm-7
             iframe.rounded{
                 height='300px'
                 src=video.embedded_url
                 frameborder='0'
                 scrolling='no'
             }
-        .col-4.mt-4
+        .col-4.col-md-6.col-sm-7.mt-4
             h2
                 = video.title
             div
@@ -44,7 +47,7 @@ hr
     .row.mt-5.ms-3
         .row.mb-3
             - if processing.in_progress?
-                .col-1.my-auto.d-flex.align-items-center
+                .col-1.col-md-1.col-sm-3.my-auto.d-flex.align-items-center
                     .spinner-grow role="status"
                         span.visually-hidden
                     span.ms-2 id="progress"
@@ -72,7 +75,7 @@ hr
                                 }
                             }
                         });
-            .col-2.my-auto
+            .col-2.col-md-2.col-sm-4.my-auto
                 h2 Subtitles
             .col
                 .row.vertical-align.query-bar.w-50
@@ -88,7 +91,7 @@ hr
             .col-lg-1.col-md-2.col-sm-2
             - video.captions.each do |caption|
                 .row
-                    .col-7
+                    .col-lg-7.col-md-12.col-sm-12
                         a.row.caption-line type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="setEmbededUrl(#{caption[:start].to_i.to_s})"
                             .col-2 style="width:fit-content"
                                 - if highlights.include? caption[:start].to_i
