@@ -21,6 +21,15 @@ module YouFind
     plugin :halt
     plugin :caching
 
+    def get_search_history()
+      session[:history].map do |url|
+        {
+          'label' => url,
+          'value' => url
+        }
+      end
+    end
+
     route do |routing|
       routing.assets # load CSS
       routing.public # make public files available
@@ -32,13 +41,7 @@ module YouFind
 
       # GET /
       routing.root do
-        url_history = session[:history].map do |url|
-          {
-            'label' => url,
-            'value' => url
-          }
-        end
-        view 'home', locals: { url_history: url_history }
+        view 'home', locals: { url_history: get_search_history }
       end
 
       routing.on 'video' do
@@ -108,7 +111,7 @@ module YouFind
             processing = Views::CommentProcessing.new(
               App.config, highlights_value.response
             )
-            view 'video', locals: { video: video, highlights: highlights, processing: processing }
+            view 'video', locals: { video: video, highlights: highlights, processing: processing, url_history: get_search_history }
           end
         end
       end
